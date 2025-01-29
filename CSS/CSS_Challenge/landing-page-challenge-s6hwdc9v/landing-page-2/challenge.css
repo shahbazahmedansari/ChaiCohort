@@ -1,0 +1,132 @@
+/* Challenge CSS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	line-height: 1.6;
+	background-color: #1f1e1e;
+	color: #fff;
+}
+
+/* Navbar styles */
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px 50px;
+}
+
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgb(15, 212, 81);
+	gap: 10px;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.logo img {
+	border-radius: 50px;
+	border: 2px solid rgb(15, 212, 81);
+	object-fit: contain;
+}
+
+.menu a {
+	text-decoration: none;
+	color: #fff;
+	margin-left: 50px;
+}
+
+.menu a:hover {
+	color: rgb(15, 212, 81);
+}
+
+/* Hero section styles */
+.hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100vw;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('./assets/chaicohort.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 50px;
+}
+
+.hero-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.hero-content h1 {
+	color: rgb(15, 212, 81);
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.hero-content p {
+	margin-top: 15px;
+}
+
+.hero-content img {
+	object-fit: contain;
+	border-radius: 15px;
+	border: 2px solid rgb(15, 212, 81);
+	margin-top: 20px;
+}
+
+.enroll-button {
+	background-color: rgb(15, 212, 81);
+	color: #000;
+	margin-top: 20px;
+	border: none;
+	padding: 15px;
+	border-radius: 50px;
+	width: 150px;
+	font-size: 15px;
+}
+
+.enroll-button:hover {
+	background-color: lawngreen;
+	cursor: pointer;
+}
+
+/* Highlights section styles */
+.highlights {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	margin-top: 30px;
+}
+
+.highlight-card {
+	width: 250px;
+	text-align: center;
+	border-radius: 20px;
+	background-color: rgb(53, 52, 52);
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.highlight-card h3 {
+	color: rgb(15, 212, 81);
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.highlight-card p {
+	color: #fff;
+	font-size: 12px;
+	width: 200px;
+}

@@ -1,0 +1,159 @@
+/* Challenge CSS */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	background-color: #151515;
+	color: white;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 20px;
+}
+
+h1 {
+	color: rgb(194, 34, 47);
+	font-size: 40px;
+}
+
+.subtitle {
+	color: gray;
+	margin-top: 10px;
+	font-size: 18px;
+}
+
+.pricing-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 50px;
+	gap: 80px;
+}
+
+.pricing-card {
+	width: 300px;
+	background-color: rgb(44, 44, 44);
+	padding: 30px;
+	border-radius: 20px;
+	border: 1px solid gray;
+	text-align: center;
+	position: relative;
+}
+
+.pricing-card:hover {
+	background-color: #010101;
+	cursor: pointer;
+}
+
+.card-header {
+	font-size: 15px;
+}
+
+.icon {
+	font-size: 35px;
+}
+
+.popular-tag {
+	color: #000;
+	background-color: yellow;
+	padding: 10px;
+	border-radius: 50px;
+	width: 150px;
+	font-size: 12px;
+	font-weight: bold;
+	position: absolute;
+	top: -20px;
+	left: 75px;
+}
+
+.price-block {
+	background-color: rgb(62, 60, 60);
+	border-radius: 10px;
+	width: 150px;
+	text-align: center;
+	padding: 20px;
+	margin: 30px auto;
+	z-index: -1;
+}
+
+.price {
+	color: rgb(194, 34, 47);
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.period {
+	color: gray;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+.features {
+	list-style: none;
+}
+
+.features li {
+	margin: 20px auto;
+}
+
+.features li.disabled {
+	color: gray;
+}
+
+.join-btn {
+	background-color: transparent;
+	border: 2px solid rgb(194, 34, 47);
+	padding: 15px;
+	border-radius: 10px;
+	color: rgb(194, 34, 47);
+	font-weight: bold;
+	width: 200px;
+}
+
+.join-btn:hover {
+	background-color: rgb(194, 34, 47);
+	color: #000;
+	cursor: pointer;
+}
+
+/* Custom Class Modifiers */
+.warrior {
+	border: 2px solid rgb(194, 34, 47);
+	background-color: rgb(81, 46, 49);
+}
+
+.champion {
+	border: 2px solid rgb(216, 219, 43);
+	background-color: rgb(73, 54, 31);
+}
+
+.champion .price {
+	color: yellow;
+}
+
+.champion .join-btn {
+	border: 2px solid yellow;
+	color: yellow;
+}
+
+.champion .join-btn:hover {
+	background-color: beige;
+	color: #000;
+}
