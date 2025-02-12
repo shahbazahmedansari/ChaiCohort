@@ -1,0 +1,128 @@
+/* Challenge CSS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Basic styles */
+body {
+	font-family: 'Arial', sans-serif;
+	line-height: 1.6;
+	overflow: hidden;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('./assets/chaigym.png');
+	background-size: 100vw 100vh;
+	background-repeat: no-repeat;
+}
+
+/* Navbar styles */
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgb(63, 62, 62);
+	color: white;
+}
+
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 25px;
+	font-weight: bold;
+	gap: 10px;
+	margin: 10px 80px;
+}
+
+.logo img {
+	border-radius: 50px;
+}
+
+.nav-links a {
+	text-decoration: none;
+	color: white;
+	margin-right: 70px;
+}
+
+.nav-links a:hover {
+	color: #de6503;
+	cursor: pointer;
+}
+
+/* Hero section styles */
+.hero {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 100px;
+	flex-direction: column;
+}
+
+.hero-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.hero-content h1 {
+	color: white;
+	font-size: 60px;
+}
+
+.hero-content p {
+	margin-top: 30px;
+	font-size: 20px;
+	color: white;
+}
+
+.cta-button {
+	background-color: #de6503;
+	color: #000;
+	border: none;
+	padding: 15px;
+	border-radius: 10px;
+	margin-top: 40px;
+	width: 150px;
+}
+
+.cta-button:hover {
+	background-color: orangered;
+	cursor: pointer;
+}
+
+/* Features section styles */
+.features {
+	margin-top: 50px;
+	background-color: #000;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 80px;
+	padding: 60px;
+	border-radius: 20px;
+	opacity: 0.85;
+}
+
+.feature {
+	width: 350px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border: 2px solid #de6503;
+	border-radius: 20px;
+	padding: 30px;
+}
+
+.feature h3 {
+	color: #de6503;
+	font-size: 22px;
+}
+
+.feature p {
+	color: #fff;
+	font-size: 15px;
+}
