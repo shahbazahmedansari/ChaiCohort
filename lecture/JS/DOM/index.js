@@ -2,13 +2,15 @@ function changeBackgroundColor(color) {
     document.body.style.backgroundColor = color;
 }
 
-const toggleBtn = document.getElementById("toggle-btn");
-const changeColor = "white";
+const themeButton = document.getElementById("toggle-btn");
 
-toggleBtn.addEventListener("click", () => {
-    if (!changeColor || changeColor == "white") {
-        document.body.style.backgroundColor = "black";
+themeButton.addEventListener("click", () => {
+    const currentColor = document.body.style.backgroundColor;
+    if (!currentColor || currentColor == "white") {
+        changeBackgroundColor("black");
+        themeButton.innerText = "Light Mode";
     } else {
-        document.body.style.backgroundColor = "white";
+        changeBackgroundColor("white");
+        themeButton.innerText = "Dark Mode";
     }
 });
