@@ -42,9 +42,7 @@ function renderTodo() {
         checkBox.classList.add("complete-checkbox");
         checkBox.addEventListener("change", (e) => {
             e.preventDefault();
-            console.log(todo.completed);
             todo.completed = !todo.completed;
-            console.log(todo.completed);
             if (todo.completed) {
                 para.style.color = "gray";
                 para.style.textDecoration = "line-through";
@@ -59,7 +57,12 @@ function renderTodo() {
         deleteButton.innerText = "X";
         deleteButton.classList.add("delete-btn");
         deleteButton.addEventListener("click", () => {
-            newList.remove();
+            const todoIndex = todos.findIndex(t => t.id === todo.id);
+            if (todoIndex !== -1) {
+                todos.splice(todoIndex, 1);
+                newList.remove();
+            }
+            updateTasks();
         });
 
         newDiv.appendChild(checkBox);

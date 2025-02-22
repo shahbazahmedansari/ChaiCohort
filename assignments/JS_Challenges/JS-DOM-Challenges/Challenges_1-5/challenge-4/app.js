@@ -58,7 +58,12 @@ function renderList() {
         deleteButton.innerText = "Delete";
         deleteButton.classList.add("delete-button");
         deleteButton.addEventListener("click", () => {
-            newList.remove();
+            const todoIndex = todos.findIndex(t => t.id === todo.id);
+            if (todoIndex !== -1) {
+                todos.splice(todoIndex, 1);
+                newList.remove();
+            }
+            updateTasks();
         });
 
         newDiv.appendChild(checkBox);
