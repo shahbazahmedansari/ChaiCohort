@@ -1,23 +1,71 @@
-const todoInput = document.getElementById("todo-input");
 const addBtn = document.getElementById("add-btn");
 const ul = document.getElementById("todo-list");
+const totalTasks = document.getElementById("totalTasks");
+const completedTasks = document.getElementById("completedTasks");
 
-addBtn.addEventListener("click", function () {
-    const value = todoInput.value;
-    console.log(value);
+const todos = [];
 
-    const li = document.createElement("li");
-    li.innerText = value;
+addBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    ul.innerText = "";
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.innerText = "X";
-    deleteBtn.classList.add("delete-btn");
-    deleteBtn.addEventListener("click", function () {
-        li.remove();
+    const todoInput = document.getElementById("todo-input");
+
+    todos.push({
+        id: Date.now(),
+        completed: false,
+        title: todoInput.value,
     });
-
-    li.appendChild(deleteBtn);
-
-    ul.appendChild(li);
+    renderTodo();
+    updateTasks();
     todoInput.value = "";
 });
+
+function updateTasks() {
+    const totalTaskNumber = todos.length;
+    totalTasks.innerText = `Total Tasks: ${totalTaskNumber}`;
+    const completedFilter = todos.filter(todo => todo.completed);
+    completedTasks.innerText = `Completed: ${completedFilter.length}`;
+}
+
+function renderTodo() {
+    todos.map(todo => {
+        const newList = document.createElement("li");
+        newList.classList.add("newList");
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("textDiv");
+        const para = document.createElement("p");
+        para.innerText = todo.title;
+
+        const checkBox = document.createElement("input");
+        checkBox.type = "checkBox";
+        checkBox.classList.add("complete-checkbox");
+        checkBox.addEventListener("change", (e) => {
+            e.preventDefault();
+            console.log(todo.completed);
+            todo.completed = !todo.completed;
+            console.log(todo.completed);
+            if (todo.completed) {
+                para.style.color = "gray";
+                para.style.textDecoration = "line-through";
+            } else {
+                para.style.color = "";
+                para.style.textDecoration = "";
+            }
+            updateTasks();
+        });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "X";
+        deleteButton.classList.add("delete-btn");
+        deleteButton.addEventListener("click", () => {
+            newList.remove();
+        });
+
+        newDiv.appendChild(checkBox);
+        newDiv.appendChild(para);
+        newList.appendChild(newDiv);
+        newList.appendChild(deleteButton);
+        ul.appendChild(newList);
+    });
+}

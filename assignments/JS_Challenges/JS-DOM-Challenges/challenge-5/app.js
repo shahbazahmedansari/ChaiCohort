@@ -17,6 +17,7 @@ const images = [
   },
 ];
 
+
 const carouselTrack = document.getElementById("carouselTrack");
 const caption = document.getElementById("caption");
 const prevButton = document.getElementById("prevButton");
@@ -24,3 +25,96 @@ const nextButton = document.getElementById("nextButton");
 const carouselNav = document.getElementById("carouselNav");
 const autoPlayButton = document.getElementById("autoPlayButton");
 const timerDisplay = document.getElementById("timerDisplay");
+
+let currentIndex = 0;
+let autoPlayInterval;
+let countdownInterval;
+let countdown = 3;
+
+
+images.forEach((image, index) => {
+  const slide = document.createElement("div");
+  slide.classList.add("carousel-slide");
+  slide.style.backgroundImage = `url(${image.url})`;
+  carouselTrack.appendChild(slide);
+
+  const indicator = document.createElement('div');
+  indicator.classList.add("carousel-indicator");
+  if (index === 0) indicator.classList.add("active");
+  indicator.setAttribute("data-index", index);
+  indicator.addEventListener("click", () => goToSlide(index));
+  carouselNav.appendChild(indicator);
+});
+
+function updateCarousel() {
+  const slideWidth = document.querySelector(".carousel-slide").offsetWidth;
+  carouselTrack.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+  caption.innerText = images[currentIndex].caption;
+
+  document.querySelectorAll(".carousel-indicator").forEach((indicator, index) => {
+    indicator.classList.toggle("active", index === currentIndex);
+  });
+}
+
+function prevSlide() {
+  resetAutoPlay();
+  currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+  updateCarousel();
+}
+
+function nextSlide() {
+  resetAutoPlay();
+  currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+  updateCarousel();
+}
+
+function goToSlide(index) {
+  resetAutoPlay();
+  currentIndex = index;
+  updateCarousel();
+}
+
+let isPlaying = false;
+
+function toggleAutoPLay() {
+  if (isPlaying) {
+    clearInterval(autoPlayInterval);
+    clearInterval(countdownInterval);
+    autoPlayButton.innerText = "Start Auto Play";
+    timerDisplay.innerText = "";
+  } else {
+    startCountDown();
+    autoPlayButton.innerText = "Stop Auto Play";
+  }
+  isPlaying = !isPlaying;
+}
+
+function startCountDown() {
+  clearInterval(countdownInterval);
+  countdown = 3;
+  timerDisplay.innerText = `Next slide in ${countdown}...`;
+
+  countdownInterval = setInterval(() => {
+    countdown--;
+    if (countdown === 0) {
+      clearInterval(countdownInterval);
+      nextSlide();
+      startCountDown();
+    } else {
+      timerDisplay.innerText = `Next slide in ${countdown}...`;
+    }
+  }, 1000);
+}
+
+function resetAutoPlay() {
+  if (isPlaying) {
+    clearInterval(countdownInterval);
+    startCountDown();
+  }
+}
+
+prevButton.addEventListener("click", prevSlide);
+nextButton.addEventListener("click", nextSlide);
+autoPlayButton.addEventListener("click", toggleAutoPLay);
+
+updateCarousel();

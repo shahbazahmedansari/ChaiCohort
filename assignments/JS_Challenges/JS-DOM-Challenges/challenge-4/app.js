@@ -23,19 +23,24 @@ addButton.addEventListener("click", (e) => {
 function updateTasks() {
     const totalNumberofTasks = todos.length;
     totalTasks.innerText = `Total tasks: ${totalNumberofTasks}`;
-    const completedNumber = todos.filter(todo => todo.completed);
+    const completedNumber = todos.filter((todo) => todo.completed);
     completedTasks.innerText = `Completed: ${completedNumber.length}`;
 }
 
 function renderList() {
-    todos.map(todo => {
+    todos.map((todo) => {
         const newList = document.createElement("li");
         newList.classList.add("task-item");
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("text-div");
+
+
         const para = document.createElement("p");
         para.innerText = todo.title;
 
         const checkBox = document.createElement("input");
         checkBox.type = "checkbox";
+        checkBox.classList.add("complete-checkbox");
         checkBox.addEventListener("change", (e) => {
             e.preventDefault();
             todo.completed = !todo.completed;
@@ -56,8 +61,11 @@ function renderList() {
             newList.remove();
         });
 
-        newList.appendChild(checkBox);
-        newList.appendChild(para);
+        newDiv.appendChild(checkBox);
+        newDiv.appendChild(para);
+
+
+        newList.appendChild(newDiv);
         newList.appendChild(deleteButton);
 
         ulTaskList.appendChild(newList);
