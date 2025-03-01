@@ -1,4 +1,3 @@
-
 // console.log(arr[1]);
 
 // Based on Proxy concept:
@@ -45,7 +44,7 @@ function negativeIndex(arr) {
                 target[index] = value;
             }
             return true;
-        }
+        },
     });
 }
 
