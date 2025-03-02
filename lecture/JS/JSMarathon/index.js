@@ -13,6 +13,7 @@ var MyPromise = /** @class */ (function () {
         this._reason = undefined;
         executor(this._promiseResolver.bind(this), this._promiseRejector.bind(this));
     }
+
     MyPromise.prototype.then = function (handlerFunction) {
         if (this._state === PromiseState.FULFILLED) {
             handlerFunction(this._value);
@@ -61,11 +62,11 @@ var waitFor = function (s) {
 };
 waitFor(5)
     .then(function (value) {
-    console.log("Promise resolve", value);
-})
+        console.log("Promise resolve", value);
+    })
     .catch(function (err) {
-    console.log("Promise rejected", err);
-});
+        console.log("Promise rejected", err);
+    });
 // .finally(() => {
 //     console.log(`All Good`);
 // });

@@ -11,6 +11,8 @@ type TPromiseThenCallback<T> = (value: T | undefined) => void;
 type TPromiseCatchCallback<K> = (reason: K | undefined) => void;
 type TPromiseFinallyCallback = () => void;
 
+
+
 class MyPromise<T, K> {
     private _state: PromiseState = PromiseState.PENDING;
     private _successCallbackHandlers: TPromiseThenCallback<T>[] = [];

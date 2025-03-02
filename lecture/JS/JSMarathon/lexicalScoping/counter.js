@@ -13,6 +13,7 @@ function increment() {
 
     // Closure function: (Function binded by its lexical scope)
     return function () {
+
         // this function holds the reference to the count variable even after the increment function has stopped executing
         count++;
         return count;

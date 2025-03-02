@@ -15,6 +15,8 @@ innerFn();
 // 0 MB
 
 
+
+
 function createInstance() {
     let store = {
         value: 100,

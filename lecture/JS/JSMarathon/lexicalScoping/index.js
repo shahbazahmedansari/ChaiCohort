@@ -13,7 +13,6 @@ function sayName() {
         console.log(`Fname is`, fname, `Lname is`, lname);
         return;
     }
-
     inner();
 }
 
