@@ -1,0 +1,130 @@
+body {
+	background-image: linear-gradient(135deg, #2c194a, #5a20b1);
+	font-family: Arial, Helvetica, sans-serif;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#container {
+	background-color: #1f2937;
+	display: flex;
+	flex-direction: column;
+	width: 600px;
+	border-radius: 20px;
+	border: 1px solid gray;
+	padding: 20px;
+}
+
+#heading {
+	background-image: linear-gradient(90deg, #c643ab, #d73b8e);
+	background-clip: text;
+	color: transparent;
+	font-size: 40px;
+	letter-spacing: 3px;
+	text-align: center;
+}
+
+.height-input {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	margin: 0 20px;
+}
+
+.input-label {
+	color: #fff;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 15px;
+}
+
+#height {
+	background-color: #374151;
+	border: 1px solid #414b5a;
+	padding: 20px;
+	margin: 15px;
+	border-radius: 15px;
+	font-size: 15px;
+	color: #fff;
+	font-weight: 400;
+}
+
+#height:focus {
+	outline: none;
+}
+
+#weight {
+	background-color: #374151;
+	border: 1px solid #414b5a;
+	padding: 20px;
+	margin: 15px;
+	border-radius: 15px;
+	font-size: 15px;
+	color: #fff;
+	font-weight: 400;
+}
+
+#weight:focus {
+	outline: none;
+}
+
+.weight-input {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	margin: 0 20px;
+}
+
+#submit-btn {
+	background-image: linear-gradient(90deg, #9632e3, #d8277a);
+	border: none;
+	border-radius: 15px;
+	padding: 15px;
+	color: #fff;
+	width: 90%;
+	margin: 30px;
+	font-size: 17px;
+}
+
+#submit-btn:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+	transition: all;
+	animation: both;
+}
+
+.result {
+	background-color: #374151;
+	border: none;
+	text-align: center;
+	border-radius: 15px;
+	width: 95%;
+	margin: 15px;
+}
+
+#result > h2 {
+	color: #fff;
+	font-size: 25px;
+}
+
+#result > p {
+	color: #fff;
+	font-size: 25px;
+	font-weight: 800;
+}
+
+@media screen and (min-width: 350px) and (max-width: 768px) {
+	#container {
+		margin-top: 50px;
+		width: auto;
+	}
+}
+
+@media screen and (min-width: 758px) and (max-width: 1000px) {
+	#container {
+		margin-top: 80px;
+		width: auto;
+	}
+}

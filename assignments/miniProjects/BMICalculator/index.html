@@ -13,7 +13,44 @@
 	<body>
 		<div
 			class="container"
-			id="container"></div>
+			id="container">
+			<div class="heading">
+				<h2 id="heading">BMI Calculator</h2>
+			</div>
+			<div class="height-input">
+				<label
+					for="height"
+					class="input-label"
+					>Height (cm)</label
+				>
+				<input
+					type="number"
+					placeholder="Enter your height"
+					id="height"
+					name="height" />
+			</div>
+			<div class="weight-input">
+				<label
+					for="weight"
+					class="input-label"
+					>Weight (kg)</label
+				>
+				<input
+					type="number"
+					placeholder="Enter your weight"
+					id="weight"
+					name="weight" />
+			</div>
+			<button
+				type="submit"
+				class="submit-btn"
+				id="submit-btn">
+				Calculate BMI
+			</button>
+			<div
+				class="result"
+				id="result"></div>
+		</div>
 		<script src="app.js"></script>
 	</body>
 </html>
