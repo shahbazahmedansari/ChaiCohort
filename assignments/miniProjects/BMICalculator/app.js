@@ -5,11 +5,7 @@ calculateBtn.addEventListener("click", () => {
     const height = document.getElementById("height").value;
     const weight = document.getElementById("weight").value;
     const heightInMetre = height / 100;
-    console.log(height);
-    console.log(weight);
-    console.log(heightInMetre);
     const bmi = (weight / (heightInMetre * heightInMetre)).toFixed(1);
-    console.log(bmi);
     const bmiResult = document.createElement("h2");
     const bmiStatus = document.createElement("p");
     bmiResult.innerHTML = `Your BMI: ${bmi}`;
@@ -32,4 +28,6 @@ calculateBtn.addEventListener("click", () => {
 
     resultDiv.appendChild(bmiResult);
     resultDiv.appendChild(bmiStatus);
+    document.getElementById("height").value = "";
+    document.getElementById("weight").value = "";
 });

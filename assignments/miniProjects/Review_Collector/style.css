@@ -1,0 +1,170 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	height: 100vh;
+	background-color: #f8f8f8;
+}
+
+#container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#pageTitle {
+	font-weight: 800;
+	font-size: 40px;
+	background-image: linear-gradient(180deg, #5fafa7, #df1d48);
+	background-clip: text;
+	color: transparent;
+}
+
+.subTitle {
+	color: gray;
+	text-align: center;
+	font-size: 20px;
+}
+
+.form-rating {
+	padding: 10px;
+}
+
+.form-rating > label {
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.rating {
+	margin-top: 15px;
+}
+
+.form-name {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.form-name > label {
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#name {
+	padding: 10px;
+	border-radius: 10px;
+	border: 1px solid gray;
+}
+
+.form-review {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.form-review > label {
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#textarea {
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#submitBtn {
+	color: white;
+	background-image: linear-gradient(90deg, #a8d1cc, #f7a2ae);
+	border: none;
+	padding: 10px;
+	width: 100%;
+	border-radius: 10px;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+#submitBtn:hover {
+	cursor: pointer;
+}
+
+.terms {
+	text-align: center;
+	color: gray;
+}
+
+.ulCard {
+	width: 100%;
+	margin-left: -40px;
+}
+
+.stars:hover {
+	cursor: pointer;
+}
+
+.liCard {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	gap: 15px;
+	border: 1px solid black;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.form-subTitle {
+	color: gray;
+	text-align: center;
+	font-size: 16px;
+}
+
+#review-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+}
+
+.review-form {
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 20px;
+	box-shadow: 5px 5px 12px gray;
+	margin: 10px;
+}
+
+.review-output {
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 20px;
+	box-shadow: 5px 5px 12px gray;
+	margin: 10px;
+}
+
+#replace-div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.star-image {
+	width: 50px;
+	height: 50px;
+	background-color: #5fafa7;
+	border-radius: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+@media screen and (min-width: 350px) and (max-width: 768px) {
+	#review-section {
+		display: flex;
+		flex-direction: column;
+	}
+}

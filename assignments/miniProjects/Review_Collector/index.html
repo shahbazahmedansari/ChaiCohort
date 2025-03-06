@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Review Collector</title>
+		<link
+			rel="stylesheet"
+			href="style.css" />
+	</head>
+	<body>
+		<div
+			class="container"
+			id="container">
+			<h1
+				class="pageTitle"
+				id="pageTitle">
+				Product Reviews
+			</h1>
+			<p class="subTitle">
+				Share your thoughts and help others make informed decisions
+			</p>
+			<div
+				class="review-section"
+				id="review-section">
+				<div class="review-form">
+					<h1 class="form-title">Share Your Experience</h1>
+					<p class="form-subTitle">
+						Please rate your experience and leave a review. Your
+						feedback helps us improve.
+					</p>
+					<div class="form-rating">
+						<label for="rating">Rating</label>
+						<div
+							class="rating"
+							id="rating">
+							<span
+								class="stars"
+								id="star-1"
+								onclick="color(1)"
+								>☆</span
+							>
+							<span
+								class="stars"
+								id="star-2"
+								onclick="color(2)"
+								>☆</span
+							>
+							<span
+								class="stars"
+								id="star-3"
+								onclick="color(3)"
+								>☆</span
+							>
+							<span
+								class="stars"
+								id="star-4"
+								onclick="color(4)"
+								>☆</span
+							>
+							<span
+								class="stars"
+								id="star-5"
+								onclick="color(5)"
+								>☆</span
+							>
+							<span>Select a Rating</span>
+						</div>
+					</div>
+					<div class="form-name">
+						<label for="name">Name</label>
+						<input
+							type="text"
+							name="name"
+							id="name"
+							placeholder="Your Name" />
+					</div>
+					<div class="form-review">
+						<label for="review">Your Review</label>
+						<textarea
+							id="textarea"
+							rows="6"
+							placeholder="Tell us about your experience..."></textarea>
+					</div>
+					<button
+						type="submit"
+						id="submitBtn">
+						Submit Review
+					</button>
+					<p class="terms">
+						By submitting, you agree to our terms and privacy
+						policy.
+					</p>
+				</div>
+				<div
+					class="review-output"
+					id="review-output">
+					<h1 class="output-title">Customer Reviews</h1>
+					<div id="replace-div">
+						<p class="output-subTitle">
+							No reviews yet. Be the first to leave a review!
+						</p>
+						<div class="star-image">☆</div>
+						<p>No reviews yet</p>
+						<p>Submit your review to see it here!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="app.js"></script>
+	</body>
+</html>
