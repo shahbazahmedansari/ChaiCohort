@@ -1,75 +1,89 @@
 const cartItems = document.getElementById("cart-items");
-const totalAmountContainer = document.getElementById("cart-total");
+const cartTotal = document.getElementById("cart-total");
 
-const allProducts = [];
+let allProducts = [];
 
-function addToCart(product, amount) {
-    let totalAmount = amount;
+function addToCart(name, amount) {
+    let item = allProducts.find(product => product.name === name);
 
-    let quantity = 1;
-    cartItems.innerHTML = "";
-    const parentNewProduct = document.createElement("div");
-    console.log(product);
-    console.log(products);
-    const clickedProduct = products.find(p => p.title === product);
-    console.log(clickedProduct.title);
+    if (item) {
+        quantity++;
+    } else {
+        allProducts.push({
+            id: Date.now(),
+            name: name,
+            amount: amount,
+            quantity: 1,
+        });
+    }
 
-    const childNewProduct = document.createElement("div");
-    childNewProduct.classList.add("cart-item");
-    const productTitle = document.createElement("h3");
-    productTitle.innerHTML = clickedProduct.title;
-
-    const quantityContainer = document.createElement("div");
-    quantityContainer.classList.add("quantity-controls");
-
-    const quantityPara = document.createElement("p");
-    quantityPara.innerHTML = quantity;
-
-    const amountContainer = document.createElement("p");
-    amountContainer.innerHTML = `$${amount}`;
-
-    const minusButton = document.createElement("button");
-    minusButton.innerHTML = "-";
-    minusButton.addEventListener("click", () => {
-        if (quantity >= 1) {
-            quantity = quantity - 1;
-            quantityPara.innerHTML = quantity;
-            totalAmount -= amount;
-            totalAmount = parseFloat(totalAmount.toFixed(2));
-            amountContainer.innerHTML = `$${totalAmount}`;
-        } else if (quantity === 0) {
-            childNewProduct.remove();
-        }
-    });
-
-    const plusButton = document.createElement("button");
-    plusButton.innerHTML = "+";
-    plusButton.addEventListener("click", () => {
-        quantity = quantity + 1;
-        quantityPara.innerHTML = quantity;
-        totalAmount += amount;
-        amountContainer.innerHTML = `$${totalAmount}`;
-    });
-
-
-    const removeButton = document.createElement("button");
-    removeButton.innerHTML = "Remove";
-    removeButton.addEventListener("click", () => {
-        childNewProduct.remove();
-    });
-
-    quantityContainer.appendChild(minusButton);
-    quantityContainer.appendChild(quantityPara);
-    quantityContainer.appendChild(plusButton);
-    quantityContainer.appendChild(amountContainer);
-    quantityContainer.appendChild(removeButton);
-
-
-    childNewProduct.appendChild(productTitle);
-    childNewProduct.appendChild(quantityContainer);
-    parentNewProduct.appendChild(childNewProduct);
-    cartItems.appendChild(parentNewProduct);
+    RenderCart();
 }
 
+function RenderCart() {
+    cartItems.innerHTML = "";
+    if (allProducts.length === 0) {
+        cartItems.innerHTML = `<div class="empty-cart">Cart is empty</div>`;
+        cartTotal.innerHTML = `<h3>Total: $0.00</h3>`;
+        return;
+    }
 
+    let totalPrice = 0;
 
+    allProducts.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+
+        const productName = document.createElement("h3");
+        productName.innerHTML = item.name;
+
+        const totalItemDiv = document.createElement("div");
+        totalItemDiv.classList.add("quantity-controls");
+
+        const minusButton = document.createElement("button");
+        minusButton.innerHTML = "-";
+        minusButton.addEventListener("click", () => {
+            if (item.quantity > 1) {
+                item.quantity--;
+            } else {
+                allProducts.splice(index, 1); // Remove the item if there is 1 product left in allProducts
+            }
+            RenderCart();
+        });
+
+        const quantity = document.createElement("span");
+        quantity.innerHTML = item.quantity;
+
+        const plusButton = document.createElement("button");
+        plusButton.innerHTML = "+";
+        plusButton.addEventListener("click", () => {
+            item.quantity++;
+            RenderCart();
+        });
+
+        const price = document.createElement("spna");
+        price.innerHTML = `$${(item.quantity * item.amount).toFixed(2)}`;
+        totalPrice += item.quantity * item.amount;
+
+        const removeButton = document.createElement("button");
+        removeButton.innerHTML = "Remove";
+        removeButton.addEventListener("click", () => {
+            allProducts = allProducts.filter(p => p.name !== item.name);
+            RenderCart();
+        });
+
+        totalItemDiv.appendChild(minusButton);
+        totalItemDiv.appendChild(quantity);
+        totalItemDiv.appendChild(plusButton);
+        totalItemDiv.appendChild(price);
+        totalItemDiv.appendChild(removeButton);
+
+        div.appendChild(productName);
+        div.appendChild(totalItemDiv);
+
+        cartItems.appendChild(div);
+        console.log(totalPrice);
+
+        cartTotal.innerHTML = `Total: $${totalPrice}`;
+    });
+}
