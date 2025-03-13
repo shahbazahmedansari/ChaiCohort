@@ -1,0 +1,19 @@
+{
+	"name": "fullstack",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "A fullstack app with authentication",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon index.js"
+	},
+	"author": "Shahbaz Ansari",
+	"license": "ISC",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.7",
+		"express": "^4.21.2",
+		"nodemon": "^3.1.9"
+	}
+}
