@@ -11,14 +11,83 @@ body {
 }
 
 #container {
+	background-color: #2b2d2d;
+	border-radius: 15px;
+	padding: 30px 50px;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	max-width: 200px;
+}
+
+h1 {
+	font-size: 40px;
+	text-align: center;
+}
+
+#colorInput {
+	-webkit-appearance: none;
+	border: none;
+	width: 70px;
+	height: 70px;
+	cursor: pointer;
+}
+
+#colorInput::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+#colorInput::-webkit-color-swatch {
+	border: none;
+}
+
+#colorCode {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#copyButton {
+	background-color: rgb(9, 219, 9);
+	border: none;
+	border-radius: 10px;
+	color: #000;
+	padding: 10px;
+}
+
+#copyButton:hover {
+	cursor: pointer;
+	background-color: rgb(114, 184, 10);
+}
+
+.complementary-colors,
+.favorites {
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgb(35, 34, 34);
-	width: 500px;
-	border-radius: 15px;
-	padding: 20px;
+	flex-direction: column;
+}
+
+.complementary-colors > h2,
+.favorites > h2 {
+	text-align: center;
+	color: gray;
+	font-size: 30px;
+}
+
+#saveColorButton {
+	background-color: rgb(9, 219, 9);
+	border: none;
+	border-radius: 10px;
+	color: #000;
+	padding: 10px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#saveColorButton:hover {
+	cursor: pointer;
+	background-color: rgb(114, 184, 10);
 }
 
 .color-box {
@@ -26,4 +95,11 @@ body {
 	height: 50px;
 	border-radius: 8px;
 	cursor: pointer;
+}
+
+#favoritesContainer {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 15px;
+	width: 200px;
 }

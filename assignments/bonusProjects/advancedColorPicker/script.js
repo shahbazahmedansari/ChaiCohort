@@ -7,42 +7,41 @@ const favoritesContainer = document.getElementById("favoritesContainer");
 
 colorInput.addEventListener("input", () => {
     const selectedColor = colorInput.value;
-    console.log(selectedColor);
-    updateSelectedColor(selectedColor);
-    showComplementoryColor(selectedColor);
+    updateColorCode(selectedColor);
+    showCompensatoryColor(selectedColor);
 });
 
-function updateSelectedColor(color) {
-    colorCode.textContent = color;
-    colorCode.style.color = color;
-}
+function showCompensatoryColor(color) {
+    const complementoryColors = getCompensatoryColor(color);
+    complementaryContainer.innerHTML = "";
 
-function showComplementoryColor(color) {
-    const complementoryColors = getComplementoryColor(color);
-    complementaryContainer.innerHTML = ""; // clear previous color
-
-    complementoryColors.forEach((compColor) => {
+    complementoryColors.forEach((color) => {
         const colorBox = document.createElement("div");
         colorBox.classList.add("color-box");
-        colorBox.style.backgroundColor = compColor;
+        colorBox.style.backgroundColor = color;
         complementaryContainer.appendChild(colorBox);
     });
 }
 
-function getComplementoryColor(color) {
-    const base = parseInt(color.slice(1), 16);
+function getCompensatoryColor(compColor) {
+    const base = parseInt(compColor.slice(1), 16);
     const complement = (0xFFFFFF ^ base).toString(16).padStart(6, "0");
     return [`#${complement}`];
 }
 
+function updateColorCode(color) {
+    colorCode.innerHTML = color;
+    colorCode.style.color = color;
+}
+
 copyButton.addEventListener("click", () => {
-    navigator.clipboard.writeText(colorCode.textContent)
-        .then(() => alert("Color copied to clipboard"))
-        .catch(err => console.error("Failed to copy color", err));
+    const color = colorCode.innerHTML;
+    navigator.clipboard.writeText(color);
+    alert("Color copied to clipboard");
 });
 
-saveColorButton.addEventListener('click', () => {
-    const color = colorCode.textContent;
+saveColorButton.addEventListener("click", () => {
+    const color = colorCode.innerHTML;
     addFavoriteColor(color);
 });
 
