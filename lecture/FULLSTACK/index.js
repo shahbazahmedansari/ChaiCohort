@@ -1,28 +1,27 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import db from "./utils/db.js";
-
-// import all routes
 import userRoutes from "./routes/user.routes.js";
 
 dotenv.config();
 
 const app = express();
 
+const port = process.env.PORT || 4000;
+
 app.use(
     cors({
-        origin: process.env.BASE_URL,
+        origin: "http://localhost:3000",
         credentials: true,
-        methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const port = process.env.PORT || 3000;
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
     res.send("Cohort!");
@@ -33,17 +32,15 @@ app.get("/hitesh", (req, res) => {
 });
 
 app.get("/piyush", (req, res) => {
-    res.send("Piyush!");
+    res.send("Piyush");
 });
 
-// connect to db
+// Connect to DB
 db();
 
-// user routes
+// User Routes
 app.use("/api/v1/users", userRoutes);
 
 app.listen(port, () => {
-    console.log("Express server started running on port", port);
+    console.log(`App started running on port ${port}`);
 });
-
-
