@@ -3,6 +3,9 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
@@ -143,7 +146,7 @@ const login = async (req, res) => {
                 id: user._id,
                 role: user.role,
             },
-            "sshhhh",
+            process.env.JWT_SECRET,
             {
                 expiresIn: "24h",
             }
@@ -176,4 +179,134 @@ const login = async (req, res) => {
     }
 };
 
-export { registerUser, verifyUser, login };
+const getProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("-password");
+        console.log(user);
+        if (!user) {
+            return res.status(400).json({
+                message: "User not found",
+                success: false,
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            user,
+        });
+    } catch (error) {
+        return res.status(400).json({
+            message: "User not found",
+        });
+    }
+};
+
+const logoutUser = async (req, res) => {
+    try {
+        res.cookie("token", "", {});
+        res.status(200).json({
+            success: true,
+            message: "Logged out successfully",
+        });
+    } catch (error) {
+        return res.status(400).json({
+            message: "User not logged out",
+        });
+    }
+};
+
+const forgotPassword = async (req, res) => {
+    try {
+        // get email
+        const { email } = req.body;
+
+        // find user based on email
+
+        const user = await User.findOne({ email });
+
+        console.log(user);
+
+        if (!user) {
+            return res.status(400).json({
+                message: "User not found",
+                success: false,
+            });
+        }
+
+        // create a token
+
+        const token = crypto.randomBytes(32).toString("hex");
+        console.log(token);
+
+        const expiryDate = Date.now() + (10 * 60 * 1000);
+        console.log(expiryDate);
+
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = expiryDate;
+
+        await user.save();
+
+        // send email
+        const transporter = nodemailer.createTransport({
+            host: process.env.MAILTRAP_HOST,
+            port: process.env.MAILTRAP_PORT,
+            secure: false, // true for port 465, false for other ports
+            auth: {
+                user: process.env.MAILTRAP_USERNAME,
+                pass: process.env.MAILTRAP_PASSWORD,
+            },
+        });
+
+        const mailOptions = {
+            from: process.env.MAILTRAP_SENDEREMAIL, // sender address
+            to: user.email, // list of receivers
+            subject: "Verify your email", // Subject line
+            text: `Please click on the following link:
+            ${process.env.BASE_URL}/api/v1/users/verify/${token}`, // plain text body
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        res.status(200).json({
+            message: "Forgot password email sent",
+            success: true,
+        });
+    } catch (error) {
+
+    }
+};
+
+const resetPassword = async (req, res) => {
+    try {
+        // collect token from params
+        const { token } = req.params;
+
+        // get password from user
+        const { password } = req.body;
+
+        try {
+            const user = await User.findOne({
+                resetPasswordToken: token,
+                resetPasswordExpires: { $gt: Date.now() }
+            });
+
+            // set password in user
+            user.password = password;
+
+            // resetToken, resetExpiry => reset
+            resetPasswordToken = "";
+            resetPasswordExpires = undefined;
+
+            await user.save();
+
+        } catch (error) {
+
+        }
+    } catch (error) {
+        return res.status(400).json({
+            message: "Password not reset",
+        });
+    }
+};
+
+export { registerUser, verifyUser, login, getProfile, logoutUser, forgotPassword, resetPassword };

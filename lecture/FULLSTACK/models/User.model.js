@@ -18,10 +18,10 @@ const userSchema = new mongoose.Schema(
         verificationToken: {
             type: String,
         },
-        passwordVerificationToken: {
+        resetPasswordToken: {
             type: String,
         },
-        passwordVerificationExpires: {
+        resetPasswordExpires: {
             type: Date,
         },
     },
