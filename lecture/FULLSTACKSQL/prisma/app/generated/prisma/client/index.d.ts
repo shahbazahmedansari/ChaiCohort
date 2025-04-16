@@ -883,6 +883,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
+    phone: string | null
     password: string | null
     role: string | null
     isVerified: boolean | null
@@ -897,6 +898,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
+    phone: string | null
     password: string | null
     role: string | null
     isVerified: boolean | null
@@ -911,6 +913,7 @@ export namespace Prisma {
     id: number
     name: number
     email: number
+    phone: number
     password: number
     role: number
     isVerified: number
@@ -927,6 +930,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    phone?: true
     password?: true
     role?: true
     isVerified?: true
@@ -941,6 +945,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    phone?: true
     password?: true
     role?: true
     isVerified?: true
@@ -955,6 +960,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    phone?: true
     password?: true
     role?: true
     isVerified?: true
@@ -1042,6 +1048,7 @@ export namespace Prisma {
     id: string
     name: string
     email: string
+    phone: string
     password: string
     role: string
     isVerified: boolean
@@ -1073,6 +1080,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    phone?: boolean
     password?: boolean
     role?: boolean
     isVerified?: boolean
@@ -1087,6 +1095,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    phone?: boolean
     password?: boolean
     role?: boolean
     isVerified?: boolean
@@ -1101,6 +1110,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    phone?: boolean
     password?: boolean
     role?: boolean
     isVerified?: boolean
@@ -1115,6 +1125,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    phone?: boolean
     password?: boolean
     role?: boolean
     isVerified?: boolean
@@ -1125,7 +1136,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "isVerified" | "verificationToken" | "passwordResetToken" | "passwordResetExpiry" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "role" | "isVerified" | "verificationToken" | "passwordResetToken" | "passwordResetExpiry" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1134,6 +1145,7 @@ export namespace Prisma {
       id: string
       name: string
       email: string
+      phone: string
       password: string
       role: string
       isVerified: boolean
@@ -1568,6 +1580,7 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
+    readonly phone: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'String'>
     readonly isVerified: FieldRef<"User", 'Boolean'>
@@ -1960,6 +1973,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
+    phone: 'phone',
     password: 'password',
     role: 'role',
     isVerified: 'isVerified',
@@ -2061,6 +2075,7 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
+    phone?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: StringFilter<"User"> | string
     isVerified?: BoolFilter<"User"> | boolean
@@ -2075,6 +2090,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
@@ -2088,6 +2104,7 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    phone?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -2100,12 +2117,13 @@ export namespace Prisma {
     passwordResetExpiry?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-  }, "id" | "email">
+  }, "id" | "email" | "phone">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
@@ -2126,6 +2144,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
+    phone?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     role?: StringWithAggregatesFilter<"User"> | string
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
@@ -2140,6 +2159,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    phone: string
     password: string
     role?: string
     isVerified?: boolean
@@ -2154,6 +2174,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    phone: string
     password: string
     role?: string
     isVerified?: boolean
@@ -2168,6 +2189,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     isVerified?: BoolFieldUpdateOperationsInput | boolean
@@ -2182,6 +2204,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     isVerified?: BoolFieldUpdateOperationsInput | boolean
@@ -2196,6 +2219,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    phone: string
     password: string
     role?: string
     isVerified?: boolean
@@ -2210,6 +2234,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     isVerified?: BoolFieldUpdateOperationsInput | boolean
@@ -2224,6 +2249,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     isVerified?: BoolFieldUpdateOperationsInput | boolean
@@ -2289,6 +2315,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
@@ -2303,6 +2330,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
@@ -2317,6 +2345,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
