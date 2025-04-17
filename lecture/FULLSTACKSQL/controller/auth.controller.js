@@ -129,3 +129,28 @@ export const loginUser = async (req, res) => {
         });
     }
 };
+
+export const getProfile = async (req, res) => {
+    try {
+        const { email } = req.user.email;
+        const user = await prisma.user.findUnique({ email });
+
+        if (!user) {
+            return res.status(400).json({
+                message: "User not found",
+                success: false,
+            });
+        }
+
+        res.status(200).json({
+            message: "User found successfully",
+            success: true,
+
+        });
+    } catch (error) {
+        return res.status(400).json({
+            message: "User not found",
+            success: false,
+        });
+    }
+};
