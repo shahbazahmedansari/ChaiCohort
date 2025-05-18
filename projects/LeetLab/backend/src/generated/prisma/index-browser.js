@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.8.2
+ * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.8.2",
+  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -149,6 +149,47 @@ exports.Prisma.ProblemScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SubmissionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  problemId: 'problemId',
+  sourceCode: 'sourceCode',
+  language: 'language',
+  stdin: 'stdin',
+  stdout: 'stdout',
+  stderr: 'stderr',
+  compiledOutput: 'compiledOutput',
+  status: 'status',
+  memory: 'memory',
+  time: 'time',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TestCaseResultScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  testCase: 'testCase',
+  passed: 'passed',
+  stdout: 'stdout',
+  expected: 'expected',
+  stderr: 'stderr',
+  compiledOutput: 'compiledOutput',
+  status: 'status',
+  memory: 'memory',
+  time: 'time',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProblemSolvedScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  problemId: 'problemId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -186,7 +227,10 @@ exports.Difficulty = exports.$Enums.Difficulty = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Problem: 'Problem'
+  Problem: 'Problem',
+  Submission: 'Submission',
+  TestCaseResult: 'TestCaseResult',
+  ProblemSolved: 'ProblemSolved'
 };
 
 /**

@@ -10,9 +10,9 @@ problemRouter.get("/get-all-problems", authMiddleware, getAllProblems);
 
 problemRouter.get("/get-problem/:id", authMiddleware, getProblemById);
 
-problemRouter.post("/update-problem/:id", authMiddleware, checkAdmin, updateProblem);
+problemRouter.put("/update-problem/:id", authMiddleware, checkAdmin, updateProblem);
 
-problemRouter.post("/delete-problem/:id", authMiddleware, checkAdmin, deleteProblem);
+problemRouter.delete("/delete-problem/:id", authMiddleware, checkAdmin, deleteProblem);
 
 problemRouter.get("/get-solved-problems", authMiddleware, getAllProblemsSolvedByUser);
 
