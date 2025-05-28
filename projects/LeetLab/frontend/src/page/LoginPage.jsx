@@ -109,8 +109,8 @@ const LoginPage = () => {
                   Loading...
                 </>
               ) : (
-                "Sign in"
-              )} Login
+                "Login"
+              )}
             </button>
           </form>
 

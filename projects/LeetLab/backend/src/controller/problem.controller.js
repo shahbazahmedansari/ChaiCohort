@@ -3,8 +3,9 @@ import { getJudge0LanguageId, pollBatchResults, submitBatch } from "../libs/judg
 
 export const createProblem = async (req, res) => {
   // going to get all the data from the request body
-  const { title, description, difficulty, tags, examples, constraints, testcases, codeSnippets, referenceSolution } = req.body;
+  const { title, description, difficulty, tags, examples, constraints, testcases, codeSnippets, referenceSolutions } = req.body;
 
+  console.log(req.user.role);
   // going to check the user role once again
   if (req.user.role !== "ADMIN") {
     return res.status(403).json({
@@ -15,9 +16,9 @@ export const createProblem = async (req, res) => {
 
   try {
     // going to loop through each reference solution for different languages
-    for (const [language, solutionCode] of Object.entries(referenceSolution)) {
+    for (const [language, solutionCode] of Object.entries(referenceSolutions)) {
       const languageId = getJudge0LanguageId(language);
-
+      console.log(languageId);
       if (!languageId) {
         return res.status(400).json({
           error: `Language ${language} is not supported`,
@@ -32,13 +33,14 @@ export const createProblem = async (req, res) => {
         stdin: input,
         expected_output: output,
       }));
+      console.log(submissions);
 
       const submissionResults = await submitBatch(submissions);
-
+      console.log(submissionResults);
       const tokens = submissionResults.map((res) => res.token);
-
+      console.log(tokens);
       const results = await pollBatchResults(tokens);
-
+      console.log(results);
       for (let i = 0; i < results.length; i++) {
         const result = results[i];
         console.log("Result---->", result);

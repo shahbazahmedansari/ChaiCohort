@@ -12,9 +12,9 @@ import {
 } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import { useState } from 'react';
-// import { axiosInstance } from "../lib/axios";
-// import toast from "react-hot-toast";
-// import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../lib/axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { problemSchema } from "../validation/index.js";
 
 const sampledpData = {
@@ -466,7 +466,7 @@ public class Main {
 
 const CreateProblemForm = () => {
   const [sampleType, setSampleType] = useState("DP");
-  // const navigation = useNavigate();
+  const navigation = useNavigate();
   const { register, control, handleSubmit, reset, formState: { errors } } = useForm(
     {
       resolver: zodResolver(problemSchema),
@@ -515,7 +515,18 @@ const CreateProblemForm = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (value) => {
-    console.log(value);
+    try {
+      setIsLoading(true);
+      const res = await axiosInstance.post("/problems/create-problem", value);
+      console.log(res.data);
+      toast.success(res.data.message || "Problem created successfully");
+      navigation("/");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error creating problem");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const loadSampleData = () => {

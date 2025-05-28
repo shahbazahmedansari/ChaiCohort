@@ -132,8 +132,8 @@ const SignUpPage = () => {
                   Loading...
                 </>
               ) : (
-                "Sign in"
-              )} Sign Up
+                "Sign up"
+              )}
             </button>
           </form>
 

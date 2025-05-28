@@ -16,6 +16,7 @@ export const authMiddleware = async (req, res, next) => {
 
     try {
       decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log(decoded);
     } catch (error) {
       return res.status(401).json({
         error: "Unauthorized - No token provided",
@@ -32,9 +33,10 @@ export const authMiddleware = async (req, res, next) => {
         email: true,
         name: true,
         role: true,
-        image: true,
+        // image: true,
       }
     });
+    console.log(user);
 
     if (!user) {
       return res.status(404).json({
@@ -44,6 +46,7 @@ export const authMiddleware = async (req, res, next) => {
     }
 
     req.user = user;
+    console.log(req.user);
     next();
 
   } catch (error) {
