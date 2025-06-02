@@ -42,7 +42,7 @@ export const addProblemToPlayList = async (req, res) => {
 
     // Create records for each problem in the playlist
 
-    const problemsInPlaylist = await db.problemsInPlaylist.createMany({
+    const problemsInPlaylist = await db.problemInPlaylist.createMany({
       data: problemIds.map((problemId) => ({
         playlistId,
         problemId,
@@ -169,7 +169,7 @@ export const removeProblemFromPlayList = async (req, res) => {
       });
     }
 
-    const deletedProblem = await db.problemsInPlaylist.deleteMany({
+    const deletedProblem = await db.problemInPlaylist.deleteMany({
       where: {
         playlistId,
         problemId: {
