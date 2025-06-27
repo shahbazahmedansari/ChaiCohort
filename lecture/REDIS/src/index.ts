@@ -1,8 +1,30 @@
 import express from 'express';
 import axios from 'axios';
 import Redis from 'ioredis';
+import http from 'http';
+import { Server } from 'socket.io';
 
-const app = express();
+const app = express(); // Express Server
+
+const state = new Array(100).fill(false);
+
+const httpServer = http.createServer(app); // Http Server (Mounted Express server on Http Server)
+
+const io = new Server(); // Socket Server
+
+io.attach(httpServer);
+
+io.on('connection', (socket) => {
+	console.log('Socket connected', socket.id);
+	socket.on('message', (msg) => {
+		io.emit('server-message', msg); // Broadcast to all connected clients
+	});
+
+	socket.on('checkbox-update', (data) => {
+		state[data.index] = data.value;
+		io.emit('checkbox-update', data);
+	});
+});
 
 const PORT = process.env.PORT ?? 8000;
 
@@ -17,6 +39,8 @@ const cacheStore: CachedStoreType = {
 
 const redis = new Redis({ host: 'localhost', port: Number(6379) });
 
+app.use(express.static('./public'));
+
 app.use(async function (req: any, res: any, next: any) {
 	const key = 'rate-limit';
 
@@ -27,12 +51,16 @@ app.use(async function (req: any, res: any, next: any) {
 		redis.expire(key, 60);
 	}
 
-	if (value && Number(value) > 10) {
+	if (value && Number(value) > 100) {
 		return res.status(429).json({ message: 'Too many requests' });
 	}
 
 	redis.incr(key);
 	next();
+});
+
+app.get('/state', (req: any, res: any) => {
+	return res.json({ state });
 });
 
 app.get('/', (req: any, res: any) => {
@@ -70,7 +98,10 @@ app.get('/books/total', async (req: any, res: any) => {
 	// cacheStore.totalPageCount = Number(totalPageCount);
 	console.log(`Cache Miss`);
 	console.log(totalPageCount);
+
 	return res.json({ totalPageCount });
 });
 
-app.listen(PORT, () => console.log(`Server is running at port ${PORT}`));
+httpServer.listen(PORT, () =>
+	console.log(`HTTP Server is Running on port ${PORT}`),
+);

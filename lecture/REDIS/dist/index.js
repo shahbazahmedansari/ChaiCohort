@@ -16,13 +16,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
 const ioredis_1 = __importDefault(require("ioredis"));
-const app = (0, express_1.default)();
+const http_1 = __importDefault(require("http"));
+const socket_io_1 = require("socket.io");
+const app = (0, express_1.default)(); // Express Server
+const state = new Array(100).fill(false);
+const httpServer = http_1.default.createServer(app); // Http Server (Mounted Express server on Http Server)
+const io = new socket_io_1.Server(); // Socket Server
+io.attach(httpServer);
+io.on('connection', (socket) => {
+    console.log('Socket connected', socket.id);
+    socket.on('message', (msg) => {
+        io.emit('server-message', msg); // Broadcast to all connected clients
+    });
+    socket.on('checkbox-update', (data) => {
+        state[data.index] = data.value;
+        io.emit('checkbox-update', data);
+    });
+});
 const PORT = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 8000;
 const cacheStore = {
     // Clear, LRU, Server Crash, New Set of Problems
     totalPageCount: 0,
 };
 const redis = new ioredis_1.default({ host: 'localhost', port: Number(6379) });
+app.use(express_1.default.static('./public'));
 app.use(function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const key = 'rate-limit';
@@ -31,12 +48,15 @@ app.use(function (req, res, next) {
             redis.set(key, 0);
             redis.expire(key, 60);
         }
-        if (value && Number(value) > 10) {
+        if (value && Number(value) > 100) {
             return res.status(429).json({ message: 'Too many requests' });
         }
         redis.incr(key);
         next();
     });
+});
+app.get('/state', (req, res) => {
+    return res.json({ state });
 });
 app.get('/', (req, res) => {
     return res.json({ message: 'success' });
@@ -63,4 +83,4 @@ app.get('/books/total', (req, res) => __awaiter(void 0, void 0, void 0, function
     console.log(totalPageCount);
     return res.json({ totalPageCount });
 }));
-app.listen(PORT, () => console.log(`Server is running at port ${PORT}`));
+httpServer.listen(PORT, () => console.log(`HTTP Server is Running on port ${PORT}`));
